@@ -45,7 +45,8 @@ if __name__ == "__main__":
                         help="ids of gpus to use")
     parser.add_argument("--batch_size", type=int, default=4,
                         help="size of each image batch")
-    parser.add_argument("--checkpoint", type=str, default="checkpoints/epoch10/1.pth",
+    parser.add_argument("--checkpoint", type=str,
+                        default="checkpoints/epoch10/1.pth",
                         help="load checkpoint model")
     parser.add_argument("--pname", type=str, default="1.json",
                         help="path to store the result")

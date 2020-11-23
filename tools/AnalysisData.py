@@ -4,6 +4,7 @@ from torchvision import transforms
 from PIL import Image
 import glob
 
+
 # Calculate mean and std of training data
 class MyDataset(Dataset):
     def __init__(self):

@@ -4,9 +4,15 @@ import glob
 from PIL import Image
 
 
+def convert(text):
+    return int(text) if text.isdigit() else text.lower()
+
+
+def alphanum_key(key):
+    return [convert(c) for c in re.split('([0-9]+)', key)]
+
+
 def sorted_alphanumeric(data):
-    convert = lambda text: int(text) if text.isdigit() else text.lower()
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
     return sorted(data, key=alphanum_key)
 
 
@@ -33,11 +39,11 @@ def gen_coco_format():
                       height=imgheight,
                       width=imgwidth))
 
-        x_min, y_min, w, h = ( 0, 0, 0, 0)
+        x_min, y_min, w, h = (0, 0, 0, 0)
         data_anno = dict(
             image_id=idx,
             id=obj_count,
-            category_id= 0,
+            category_id=0,
             bbox=[x_min, y_min, w, h],
             area=w * h,
             segmentation=[],
@@ -59,6 +65,7 @@ def gen_coco_format():
                                         {'id': 8, 'name': '8'},
                                         {'id': 9, 'name': '9'}])
     return coco_format_json
+
 
 out_file = './data/fake_test.json'
 

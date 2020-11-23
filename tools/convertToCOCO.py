@@ -55,7 +55,7 @@ def h5_convert_to_coco(in_file, image_prefix):
             data_anno = dict(
                 image_id=idx,
                 id=obj_count,
-                category_id= labels[img_obj_count],
+                category_id=labels[img_obj_count],
                 bbox=[x_min, y_min, w, h],
                 area=w * h,
                 segmentation=[],

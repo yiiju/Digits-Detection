@@ -5,9 +5,11 @@ from PIL import Image
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--inpath", type=str, default="../result/yolo/yolov3_try.bbox.json",
+    parser.add_argument("--inpath", type=str,
+                        default="../result/yolo/yolov3_try.bbox.json",
                         help="path to store the result")
-    parser.add_argument("--outpath", type=str, default="../result/yolo/upload/new.json",
+    parser.add_argument("--outpath", type=str,
+                        default="../result/yolo/upload/new.json",
                         help="path to store the result")
     args = parser.parse_args()
     return args
@@ -40,15 +42,18 @@ def convert_to_uplaod_format(in_json):
         bottom = top + height
         right = left + width
         box = [int(top), int(left), int(bottom), int(right)]
-        label = 10 if in_json[idx]['category_id'] == 0 else in_json[idx]['category_id']
+        if in_json[idx]['category_id'] == 0:
+            label = 10
+        else:
+            label = in_json[idx]['category_id']
         if imgname == prename or idx == 0:
             bbox.append(box)
             labels.append(label)
             scores.append(in_json[idx]['score'])
         else:
             out_list.append(dict(bbox=bbox,
-                              label=labels,
-                              score=scores))
+                                 label=labels,
+                                 score=scores))
             count = count + 1
             if imgname-prename > 1:
                 empty = imgname - prename - 1
@@ -56,19 +61,19 @@ def convert_to_uplaod_format(in_json):
                 while empty:
                     empty = empty - 1
                     out_list.append(dict(bbox=[],
-                                label=[],
-                                score=[]))
+                                         label=[],
+                                         score=[]))
                     count = count + 1
             bbox = [box]
             labels = [label]
             scores = [in_json[idx]['score']]
         if idx == len(in_json)-1:
             out_list.append(dict(bbox=bbox,
-                              label=labels,
-                              score=scores))
+                                 label=labels,
+                                 score=scores))
             count = count + 1
         prename = imgname
-    print(count)    
+    print(count)
     return out_list
 
 
