@@ -85,13 +85,13 @@ def h5_convert_to_coco(in_file, image_prefix):
 # print(f['table']['block0_items'])
 # pd.read_hdf(filename, 'table')
 
-mf = h5py.File('../data/digitStruct.mat', 'r')
+mf = h5py.File('./data/digitStruct.mat', 'r')
 # print(get_name(24, mf))
 # print(get_bbox(24, mf))
 # print(len(mf['digitStruct/name']))
 
-image_prefix = '../data/train/'
-out_file = '../data/train_coco_anno.json'
+image_prefix = './data/train/'
+out_file = './data/test.json'
 
 with open(out_file, 'w') as json_file:
     json.dump(h5_convert_to_coco(mf, image_prefix), json_file)

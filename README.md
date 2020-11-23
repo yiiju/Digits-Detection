@@ -14,10 +14,17 @@ All requirements is detailed in requirements.txt.
     $ pip install -r requirements.txt
 
 ### Unzip dataset
-Create /data directory and unzip dataset into /data.
+Download dataset from [SVHN dataset](https://drive.google.com/drive/folders/1lXrT_oZevViwO9Yw5iI5psVJp_plqbV7?usp=sharing).
 
-    $ mkdir data
+Create /dataset directory and move the `test.zip` and `train.tar.gz` into /dataset directory.
+
+Execute the following instruction
+    
     $ sh data.sh
+
+ - Create /data directory and unzip dataset into /data.
+ - Generate `train_coco_anno.json` in /data directory.
+ - Generate `fake_test.json` in /data directory.
 
 ### Using pytorch_detection
 
@@ -55,23 +62,6 @@ The data directory is structured as:
     ├── fake_test.json ─ fake test annotations in json format
     └── train_coco_anno.json - training annotations in json format
 ```
-
-## Project Files
-`tools/convertToCOCO.py`
-
-Generate training annotations from `digitStruct.mat` into coco dataset format `train_coco_anno.json`.
-
-`tools/GenAnsJson.py`
-
-Generate test annotations from the output in mmdetection to wanted format. (JSON to JSON)
-
-`tools/fakeJson.py`
-
-Generate fake test annotation in wanted JSON format.
-
-`tools/AnalysisData.py`
-
-Calculate mean and standard deviation of the training data.
 
 ## Train
 Train in PyTorch. (The root is in pytorch_detection)

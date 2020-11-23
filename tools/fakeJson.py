@@ -18,7 +18,7 @@ def gen_coco_format():
     imgspath = []
     imgname = []
     imagepath = sorted_alphanumeric(
-                glob.glob("../data/test" + '/*.png'))
+                glob.glob("./data/test" + '/*.png'))
     for imname in imagepath:
         imgspath.append(imname)
         imgname.append(imname.split('/')[-1])
@@ -60,7 +60,7 @@ def gen_coco_format():
                                         {'id': 9, 'name': '9'}])
     return coco_format_json
 
-out_file = '../data/fake_test.json'
+out_file = './data/fake_test.json'
 
 with open(out_file, 'w') as json_file:
     json.dump(gen_coco_format(), json_file)
