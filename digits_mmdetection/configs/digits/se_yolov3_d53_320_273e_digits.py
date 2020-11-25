@@ -2,6 +2,13 @@ _base_ = '../yolo/yolov3_d53_mstrain-608_273e_coco.py'
 model = dict(
     backbone=dict(type='SE_Darknet', depth=53, out_indices=(3, 4, 5)),
     bbox_head=dict(num_classes=10,))
+test_cfg = dict(
+    nms_pre=1000,
+    min_bbox_size=0,
+    score_thr=0.05,
+    conf_thr=0.005,
+    nms=dict(type='soft_nms', iou_threshold=0.45),
+    max_per_img=100)
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '../data/'
