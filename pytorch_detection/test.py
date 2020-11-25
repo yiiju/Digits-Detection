@@ -31,8 +31,9 @@ def gen_predict_json(finallist, predictions):
             order = [1, 0, 3, 2]
             box = [box[i] for i in order]
             bbox.append(box)
-        labels = [10 if x == 0 else x
-                  for x in predictions[i]['labels'].tolist()]
+        # labels = [10 if x == 0 else x
+        #           for x in predictions[i]['labels'].tolist()]
+        labels = predictions[i]['labels'].tolist()
         finallist.append(dict(bbox=bbox,
                               label=labels,
                               score=predictions[i]['scores'].tolist()))
@@ -66,7 +67,7 @@ if __name__ == "__main__":
 
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(
             pretrained=True)
-    num_classes = 10
+    num_classes = 11
     # get number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     # replace the pre-trained head with a new one

@@ -82,7 +82,7 @@ class DigitsDataset(object):
             area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0])
             labels = [int(element) for element in
                       get_bbox(idx, self.annospath)["label"]]
-            labels = [0 if x == 10 else x for x in labels]
+            # labels = [0 if x == 10 else x for x in labels]
             iscrowd = torch.zeros((num_objs,), dtype=torch.int64)
 
             target = {}

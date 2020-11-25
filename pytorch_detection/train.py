@@ -97,7 +97,8 @@ if __name__ == "__main__":
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(
             pretrained=True)
 
-    num_classes = 10
+    # 0 is background
+    num_classes = 11
     # get number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
     # replace the pre-trained head with a new one
