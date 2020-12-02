@@ -1,5 +1,7 @@
 # Digits Detection
 
+An object detection task in SVHN dataset.
+
 ## Hardware
 Ubuntu 18.04 LTS
 
